@@ -1,21 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:odaz/home.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:odaz/app/home.dart';
+import 'package:odaz/auth/auth_controller.dart';
+import 'package:odaz/auth/login.dart';
+import 'package:odaz/routes.dart';
 import 'package:odaz/theme/themes.dart';
 
-void main() {
+void main() async {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
+  WidgetsFlutterBinding.ensureInitialized();
+  await authInit();
   runApp(const MyApp());
+}
+
+Future<void> authInit() async {
+  Get.put(AuthController());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final authCtrl = Get.find<AuthController>();
+    return GetMaterialApp(
       title: 'Odaz',
       theme: odazLightTheme,
       darkTheme: odazDarkTheme,
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: authCtrl.isAuthenticated.value
+          ? HomeScreen.routeName
+          : LoginScreen.routeName,
+      getPages: [...odazRoutes],
+      home: const HomeScreen(),
     );
   }
 }
