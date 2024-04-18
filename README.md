@@ -18,8 +18,8 @@
 
 ## Samples
 
-![Sample One](./assets/images/image1.png)
-![Sample Two](./assets/images/image2.png)
+![Sample One](./assets/images/image2.png)
+![Sample Two](./assets/images/image1.png)
 
 ## Requirements
 
