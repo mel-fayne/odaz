@@ -27,14 +27,14 @@ class LoginScreen extends StatelessWidget {
             height: 10,
           ),
           Text(
-            'Stalking Made Socially Acceptable: Tracking Your Trinkets',
-            style: Theme.of(context).textTheme.bodySmall,
+            'Stalking Made Deliciously Acceptable: Track Your Treats.',
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40, bottom: 20),
+            padding: const EdgeInsets.only(top: 60, bottom: 20),
             child: Text(
               'Welcome Back',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
           PrimaryButton(

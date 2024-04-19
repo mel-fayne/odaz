@@ -34,14 +34,14 @@ class PrimaryButton extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: Image.asset(
                             imagePath ?? "",
-                            height: 40,
+                            height: 30,
                           ),
                         )
                       : const SizedBox(),
                   Text(
                     label,
                     style: TextStyle(
-                        color: Theme.of(context).primaryColor, fontSize: 18),
+                        color: Theme.of(context).primaryColor, fontSize: 16),
                   ),
                 ],
               ),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:odaz/app/home.dart';
 import 'package:odaz/auth/auth_controller.dart';
 import 'package:odaz/auth/login.dart';
+import 'package:odaz/controllers/orders_controller.dart';
 import 'package:odaz/routes.dart';
 import 'package:odaz/theme/themes.dart';
 
@@ -12,12 +13,9 @@ void main() async {
     statusBarColor: Colors.transparent,
   ));
   WidgetsFlutterBinding.ensureInitialized();
-  await authInit();
-  runApp(const MyApp());
-}
-
-Future<void> authInit() async {
   Get.put(AuthController());
+  Get.put(OrdersController());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
