@@ -1,29 +1,7 @@
 # Odaz - A flutter order tracking application
 
-## Features
+## Demo
 
-- [ ] Sign in with Google or Github using Firebase Auth
-- [ ] Show User Profile on Sign In
-- [ ] Show Sample Order
-  - Order Details Section: OrderID, OrderDate, OrderItem, OrderQuantity, OrderPrice
-  - Tracking Order Section: Shows current status of order. Has button labelled 'Track your order' that takes them to Tracking Detail Page
-- [ ] Tracking Detail Page
-  - Statuses:
-    - ORDER PLACED
-    - ORDER ACCEPTED
-    - ORDER PICK UP IN PROGRESS
-    - ORDER ON THE WAY TO CUSTOMER
-    - ORDER ARRIVED
-    - ORDER DELIVERED
-
-## Samples
-
-![Sample One](./assets/images/image2.png)
-![Sample Two](./assets/images/image1.png)
-
-## Requirements
-
-- Updates to be mocked from Ably
-- Decent UI
-- Reusable, maintainable code
-- Fast, real-time, easy navigation
+<video width="320" height="800" controls>
+  <source src="assets/odaz-demo.mp4" type="video/mp4" autoplay="true">
+</video>
