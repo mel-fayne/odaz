@@ -7,20 +7,18 @@ import 'package:odaz/shared/utils.dart';
 import 'package:odaz/widgets/count_card.dart';
 
 class OrderCard extends StatefulWidget {
-  final OrderModel order;
   final bool showOrderStatus;
   final bool showOrderItems;
   const OrderCard(
-      {super.key,
-      required this.order,
-      required this.showOrderStatus,
-      required this.showOrderItems});
+      {super.key, required this.showOrderStatus, required this.showOrderItems});
 
   @override
   State<OrderCard> createState() => _OrderCardState();
 }
 
 class _OrderCardState extends State<OrderCard> {
+  final ordersCtrl = Get.find<OrdersController>();
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -33,7 +31,10 @@ class _OrderCardState extends State<OrderCard> {
                     color: Theme.of(context).colorScheme.tertiary,
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  child: _buildOrderStatus(),
+                  child: GetBuilder<OrdersController>(builder: (ordersCtrl) {
+                    return _buildOrderStatus(
+                        statusDisplays[ordersCtrl.currentStatus]);
+                  }),
                 )
               : const SizedBox(),
           widget.showOrderItems
@@ -46,7 +47,7 @@ class _OrderCardState extends State<OrderCard> {
                           Theme.of(context).colorScheme.secondaryContainer,
                       canTapOnHeader: true,
                       headerBuilder: (BuildContext context, bool isExpanded) {
-                        return _buildOrderTile(widget.order);
+                        return _buildOrderTile(ordersCtrl.currentOrder!);
                       },
                       body: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -66,11 +67,13 @@ class _OrderCardState extends State<OrderCard> {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                CountWidget(count: widget.order.quantity)
+                                CountWidget(
+                                    count: ordersCtrl.currentOrder!.quantity)
                               ],
                             ),
                             Wrap(
-                              children: _buildOrderItems(widget.order.items),
+                              children: _buildOrderItems(
+                                  ordersCtrl.currentOrder!.items),
                             ),
                             const Divider(),
                             Row(
@@ -82,7 +85,7 @@ class _OrderCardState extends State<OrderCard> {
                                       Theme.of(context).textTheme.headlineSmall,
                                 ),
                                 Text(
-                                  'Kes.${widget.order.totalPrice}',
+                                  'Kes.${ordersCtrl.currentOrder!.totalPrice}',
                                   style: TextStyle(
                                       color:
                                           Theme.of(context).colorScheme.primary,
@@ -98,18 +101,16 @@ class _OrderCardState extends State<OrderCard> {
                     )
                   ],
                 )
-              : _buildOrderTile(widget.order),
+              : _buildOrderTile(ordersCtrl.currentOrder!),
         ],
       ),
     );
   }
 
-  Widget _buildOrderStatus() {
-    final ordersCtrl = Get.find<OrdersController>();
-    final orderStatus = statusDisplays[widget.order.currentStatus] ?? {};
+  Widget _buildOrderStatus(dynamic orderStatus) {
     return ListTile(
       leading: Icon(
-        statusDisplays[widget.order.currentStatus]!["icon"],
+        orderStatus["icon"],
         color: Theme.of(context).colorScheme.tertiaryContainer,
       ),
       title: Text(
@@ -131,7 +132,7 @@ class _OrderCardState extends State<OrderCard> {
       ),
       trailing: ElevatedButton(
         onPressed: () {
-          ordersCtrl.setUpOrderDetails(widget.order);
+          ordersCtrl.setUpOrderDetails(ordersCtrl.currentOrder!);
         },
         child: const Text("Track Order"),
       ),
@@ -143,7 +144,7 @@ class _OrderCardState extends State<OrderCard> {
       contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       leading: CircleAvatar(
         radius: 25.0,
-        foregroundImage: AssetImage(widget.order.items[0].image),
+        foregroundImage: AssetImage(ordersCtrl.currentOrder!.items[0].image),
       ),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -7,3 +7,5 @@ get authHeaders {
 const gitId = "bc3f3d27dfa34650261e";
 const gitPassKey = "1493d57736624b45cb89d665ade34114c941bfb6";
 const gitAuthRedirectUrl = "https://odaz-8ab82.firebaseapp.com/__/auth/handler";
+
+const ablyKey = 'MZ5JnQ.gB0xUg:Zk5_cG9tfppDsv1POoy7TwdJOUw6cfoXSnno8cedxqQ';

@@ -5,10 +5,20 @@ import 'package:odaz/controllers/orders_controller.dart';
 import 'package:odaz/widgets/count_card.dart';
 import 'package:odaz/widgets/order_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = "/home";
 
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +51,7 @@ class HomeScreen extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const ClampingScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return OrderCard(
-                        order: ordersCtrl.orders[index],
+                      return const OrderCard(
                         showOrderStatus: true,
                         showOrderItems: false,
                       );
