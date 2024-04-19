@@ -2,7 +2,8 @@
 
 ## [Demo](https://www.youtube.com/shorts/lmC2dD9Mgqo)
 
-<video width="320" height="600">
+<video width="280" height="600">
+<br>
   <source src="https://www.youtube.com/shorts/lmC2dD9Mgqo">
 </video>
 
@@ -33,22 +34,31 @@ flutter run
 ### Step Four: Login
 
 - Once the app is running, sign in with your preferred method (either Google or Github). This will then redirect you to the Home Page on successful sign in.
-  <img src= "https://drive.google.com/uc?export=view&id=1Qdg5h7S2KbSZzncpaKMLolqFZyC_ibMk" alt="login page" width="320" height="600">
+
+  <br>
+  <img src= "https://drive.google.com/uc?export=view&id=1Qdg5h7S2KbSZzncpaKMLolqFZyC_ibMk" alt="login page" width="280" height="600">
+  <br>
 
 - On the home page, you'll be able to view the active order whose delivery status we will be updating using Ably.
 
-  <img src= "https://drive.google.com/uc?export=view&id=1R9ytoIrHvHZZaXBRrykLqmQObVHba0FP" alt="home page" width="320" height="600">
+  <br>
+  <img src= "https://drive.google.com/uc?export=view&id=1R9ytoIrHvHZZaXBRrykLqmQObVHba0FP" alt="home page" width="280" height="600">
+  <br>
 
 ### Step Five: Mock Real-time Delivery Status Update
 
 - Click on Track Order to navigate to the Tracking Order Screen. From here you'll be able to see more details about the order, but more importantly you'll be able to mock Real-time updates using Ably.
 
-  <img src= "https://drive.google.com/uc?export=view&id=1WUZEGYLwTrmf6pKdjAf3AxRvcbdBchcU" alt="message options page" width="320" height="600">
+  <br>
+  <img src= "https://drive.google.com/uc?export=view&id=1WUZEGYLwTrmf6pKdjAf3AxRvcbdBchcU" alt="message options page" width="280" height="600">
+  <br>
 
 - To keep things simple, the **Mock Ably** button has been provided to enable one to mock Ably calls from the application.
 - On clicking the button, a dialog pops up and presents different delivery status options you can send as a message using Ably.
 
-  <img src= "https://drive.google.com/uc?export=view&id=1llEzyu3sKsHGMl94AZtAMg7cWkITEIhi" alt="first status page" width="320" height="600">
+  <br>
+  <img src= "https://drive.google.com/uc?export=view&id=1llEzyu3sKsHGMl94AZtAMg7cWkITEIhi" alt="first status page" width="280" height="600">
+  <br>
 
 - Once an option has been selected, the **sendMessage** function shown below (found in [orders_controller.dart](https://github.com/mel-fayne/odaz/blob/main/lib/controllers/orders_controller.dart)) calls a channel called **orderStatus** and publishes the orderStatus message that was selected.
 
@@ -78,4 +88,6 @@ void listenOnAbly() {
 
 - On sending the message, the UI will be updated accordingly as shown:
 
-  <img src= "https://drive.google.com/uc?export=view&id=1LmiLW0OIwSE2sNLNFLErY93XqHNHfMc0" alt="last status page" width="320" height="600">
+  <br>
+  <img src= "https://drive.google.com/uc?export=view&id=1LmiLW0OIwSE2sNLNFLErY93XqHNHfMc0" alt="last status page" width="280" height="600">
+  <br>
