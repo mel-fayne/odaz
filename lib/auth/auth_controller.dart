@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:github_sign_in/github_sign_in.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:odaz/app/home.dart';
 import 'package:odaz/auth/login.dart';
 import 'package:odaz/data/models.dart';
 import 'package:odaz/shared/constants.dart';
+import 'package:odaz/shared/urls.dart';
 import 'package:odaz/shared/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,37 +48,55 @@ class AuthController extends GetxController {
     }
     currentGoogleUser = googleUser;
     final googleAuth = await googleUser.authentication;
-    OAuthCredential credential = GoogleAuthProvider.credential(
+    OAuthCredential googleCredential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-
     try {
-      UserCredential fbUser =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-      await storeGoogleAuth(credential, fbUser.user);
-      await setUserDetails();
-      showSnackbar(
-          path: Icons.check,
-          title: "Successful Sign In",
-          subtitle: "Welcome to Odaz");
-      await Future.delayed(const Duration(seconds: 2));
-      Get.offAllNamed(HomeScreen.routeName);
+      await signInGesture(googleCredential);
     } catch (e) {
       debugPrint("Error signing in: $e");
+      showSnackbar(
+          path: Icons.close_rounded,
+          title: "Failed Sign Up!",
+          subtitle: "Please check your internet connection or try again later");
     }
     isGoogleLoading.value = false;
   }
 
-  Future<void> githubLogin() async {
+  Future<void> githubLogin(BuildContext context) async {
     isGithubLoading.value = true;
-    // call github auth
-    // store profile
-    // store token
-    Future.delayed(const Duration(seconds: 2), () {
-      Get.offAllNamed(HomeScreen.routeName);
-    });
+    final GitHubSignIn gitHubSignIn = GitHubSignIn(
+        clientId: gitId,
+        clientSecret: gitPassKey,
+        redirectUrl: gitAuthRedirectUrl);
+    final result = await gitHubSignIn.signIn(context);
+    final githubAuthCredential =
+        GithubAuthProvider.credential(result.token ?? "");
+
+    try {
+      await signInGesture(githubAuthCredential);
+    } catch (e) {
+      debugPrint("Error signing in: $e");
+      showSnackbar(
+          path: Icons.close_rounded,
+          title: "Failed Sign Up!",
+          subtitle: "Please check your internet connection or try again later");
+    }
     isGithubLoading.value = false;
+  }
+
+  Future<void> signInGesture(dynamic credential) async {
+    UserCredential fbUser =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    await storeGoogleAuth(credential, fbUser.user);
+    await setUserDetails();
+    showSnackbar(
+        path: Icons.check,
+        title: "Successful Sign In",
+        subtitle: "Welcome to Odaz");
+    await Future.delayed(const Duration(seconds: 2));
+    Get.offAllNamed(HomeScreen.routeName);
   }
 
   Future<void> storeGoogleAuth(OAuthCredential credential, User? user) async {

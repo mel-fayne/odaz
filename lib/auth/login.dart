@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
           ),
           PrimaryButton(
             onPressed: () async {
-              await authCtrl.githubLogin();
+              await authCtrl.githubLogin(context);
             },
             isLoading: authCtrl.isGithubLoading,
             label: "Continue with Github",
