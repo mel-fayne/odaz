@@ -36,6 +36,9 @@ Map<OrderStatus, Map<String, dynamic>> statusDisplays = {
   }
 };
 
+String dummyImage =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQefTBNpczjicRgdavR6B-E7vnfaAyxeYeeA769dOEEBMrDNvbwwybRhWvy0jY-l8ulQGY&usqp=CAU";
+
 List<OrderModel> dummyOrders = [
   OrderModel(
     id: "#45677",

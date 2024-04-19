@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "32735651224",
+    "project_id": "odaz-8ab82",
+    "storage_bucket": "odaz-8ab82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32735651224:android:8d02832bf1c5e6dbda37ed",
+        "android_client_info": {
+          "package_name": "com.example.odaz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32735651224-hpceb4ddeptuvmhocc5che5vehu8q74i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM_zUzytTCSnOdMkfG3rZfIqxkx3B1afE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32735651224-hpceb4ddeptuvmhocc5che5vehu8q74i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

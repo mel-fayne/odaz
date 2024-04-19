@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
           ),
           PrimaryButton(
             onPressed: () async {
-              await authCtrl.googleSignIn();
+              await authCtrl.googleLogin();
             },
             isLoading: authCtrl.isGoogleLoading,
             label: "Continue with Google",
@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
           ),
           PrimaryButton(
             onPressed: () async {
-              await authCtrl.githubSignIn();
+              await authCtrl.githubLogin();
             },
             isLoading: authCtrl.isGithubLoading,
             label: "Continue with Github",

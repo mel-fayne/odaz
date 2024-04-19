@@ -17,16 +17,18 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => isLoading.value
-          ? const CircularProgressIndicator()
-          : ElevatedButton(
-              onPressed: onPressed,
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-                padding: const EdgeInsets.symmetric(vertical: 5),
-              ),
-              child: Row(
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        shape: const StadiumBorder(),
+        padding: const EdgeInsets.symmetric(vertical: 5),
+      ),
+      child: Obx(
+        () => isLoading.value
+            ? const CircularProgressIndicator(
+                strokeWidth: 2.0,
+              )
+            : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   imagePath != null
@@ -45,7 +47,7 @@ class PrimaryButton extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+      ),
     );
   }
 }
