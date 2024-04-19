@@ -24,6 +24,7 @@ class OrdersController extends GetxController {
     super.onInit();
     orders.value = [...dummyOrders];
     currentOrder = orders[0];
+    currentStatus = allStatuses[currentStatusIdx.value];
     setUpAblyConnection();
     listenOnAbly();
   }
